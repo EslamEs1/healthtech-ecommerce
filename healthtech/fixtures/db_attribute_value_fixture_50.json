@@ -1,0 +1,34 @@
+[
+  {
+    "model": "product.attributevalue",
+    "id": "1",
+    "fields": {
+      "attribute": "1",
+      "value": "5"
+    }
+  },
+  {
+    "model": "product.attributevalue",
+    "id": "2",
+    "fields": {
+      "attribute": "1",
+      "value": "6"
+    }
+  },
+  {
+    "model": "product.attributevalue",
+    "id": "3",
+    "fields": {
+      "attribute": "2",
+      "value": "red"
+    }
+  },
+  {
+    "model": "product.attributevalue",
+    "id": "4",
+    "fields": {
+      "attribute": "2",
+      "value": "blue"
+    }
+  }
+]

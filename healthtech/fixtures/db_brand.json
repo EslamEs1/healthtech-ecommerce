@@ -1,0 +1,74 @@
+[
+    {
+        "model": "product.brand",
+        "id": 1,
+        "fields": {
+            "name": "Fitbit",
+            "img": "img",
+            "slug": "fitbit"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 2,
+        "fields": {
+            "name": "Apple Watch",
+            "img": "img",
+            "slug": "apple-watch"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 3,
+        "fields": {
+            "name": "Garmin",
+            "img": "img",
+            "slug": "garmin"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 4,
+        "fields": {
+            "name": "Omron",
+            "img": "img",
+            "slug": "omron"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 5,
+        "fields": {
+            "name": "Withings",
+            "img": "img",
+            "slug": "withings"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 6,
+        "fields": {
+            "name": "Samsung Health",
+            "img": "img",
+            "slug": "samsung-health"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 7,
+        "fields": {
+            "name": "MyFitnessPal",
+            "img": "img",
+            "slug": "myfitnesspal"
+        }
+    },
+    {
+        "model": "product.brand",
+        "id": 8,
+        "fields": {
+            "name": "Lifesum",
+            "img": "img",
+            "slug": "lifesum"
+        }
+    }
+]

@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=healthtech
+POSTGRES_USER=pviaszKkuVwSfPMkMyshjWLLbbyOspIo
+POSTGRES_PASSWORD=KYOYEH0LKcZPPsubrIiLGxlcRMBPFkcqArq4a8tc2N2ZREzOpWZ4lNseV9eMwl4n

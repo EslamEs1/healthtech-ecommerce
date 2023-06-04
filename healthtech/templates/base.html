@@ -1,0 +1,134 @@
+{% load static i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}Health Tech{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Health Tech">
+  <meta name="author" content="Eslam Essam">
+
+  {% block css %}
+  {% include 'parts/css.html' %}
+  {% endblock %}
+</head>
+
+<body>
+  {% comment %}
+  <div class="mb-1">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="">healthtech</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="">Home <span class="visually-hidden">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">About</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:detail' request.user.pk %}">{% translate "My Profile" %}</a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
+            </li>
+            {% else %}
+            {% if ACCOUNT_ALLOW_REGISTRATION %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+  {% endcomment %}
+
+
+  <div class="wrapper">
+    {% include 'parts/navbar.html' %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Start Search Overlay -->
+    <div class="search-overlay">
+      <div class="d-table">
+        <div class="d-table-cell">
+          <div class="search-overlay-layer"></div>
+          <div class="search-overlay-layer"></div>
+          <div class="search-overlay-layer"></div>
+
+          <div class="search-overlay-close">
+            <span class="search-overlay-close-line"></span>
+            <span class="search-overlay-close-line"></span>
+          </div>
+
+          <div class="search-overlay-form">
+            <form>
+              <input type="text" class="input-search" placeholder="Search here...">
+              <button type="submit"><i class='bx bx-search-alt'></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Search Overlay -->
+
+    {% block content %}
+
+
+    {% endblock content %}
+
+    {% include 'parts/facility.html' %}
+    {% include 'parts/footer.html' %}
+  </div> <!-- /container -->
+
+
+
+  {% block modal %}
+  {% include 'parts/modal.html' %}
+  {% endblock modal %}
+
+  {% block javascript %}
+  {% include 'parts/js.html' %}
+  {% endblock javascript %}
+
+  {% block inline_javascript %}
+<script>
+  function toggleCheckbox(brand, event) {
+    event.preventDefault();
+    var checkbox = document.getElementById(brand + "-checkbox");
+    checkbox.checked = !checkbox.checked;
+  }
+</script>
+  {% endblock inline_javascript %}
+</body>
+
+</html>
