@@ -1,4 +1,5 @@
 from django.db.models import Sum
+
 from healthtech.product.models import Brand, Product, Wishlist, Inventory
 
 from .models import Settings

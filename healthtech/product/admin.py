@@ -1,7 +1,6 @@
 from django.contrib import admin
 from . models import (Product, Image, Inventory, StockControl,
-                    Category, Brand, Color,Wishlist, ProductReview, Attribute,Additional_Information)
-
+                      Category, Brand, Color, Wishlist, ProductReview, Attribute, Additional_Information)
 
 
 @admin.register(Product)
@@ -18,9 +17,11 @@ class ImageAdmin(admin.ModelAdmin):
 class InventoryAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(StockControl)
 class StockControlAdmin(admin.ModelAdmin):
     pass
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -30,6 +31,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
     pass
+
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
@@ -49,8 +51,6 @@ class ProductReviewAdmin(admin.ModelAdmin):
 @admin.register(Attribute)
 class AttributeAdmin(admin.ModelAdmin):
     pass
-
-
 
 
 @admin.register(Additional_Information)
