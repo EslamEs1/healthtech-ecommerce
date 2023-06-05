@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %} HealthTech | FAQ {% endblock title %}</title>
+{% block content %}
+
+<!-- Start Page Title Area -->
+<section class="page-title-area">
+  <div class="container">
+    <div class="page-title-content">
+      <h1>Frequently Asked Questions</h1>
+      <ul>
+        <li>FAQ</li>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- End Page Title Area -->
+
+<!-- Start FAQ Area -->
+<section class="faq-area ptb-70">
+  <div class="container">
+    <div class="tab faq-accordion-tab">
+      <div class="tab-content">
+        <div class="tabs-item">
+          <div class="faq-accordion">
+            <ul class="accordion">
+              {% for faq in faq %}
+              <li class="accordion-item">
+                <a class="accordion-title" href="javascript:void(0)">
+                  <i class="bx bx-chevron-down"></i>
+                  {{faq}}
+                </a>
+                <div class="accordion-content show">
+                  <p>{{faq.answer}}</p>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End FAQ Area -->
+{% endblock content %}

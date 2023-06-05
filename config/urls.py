@@ -3,10 +3,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
-from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("product/", include("healthtech.product.urls", namespace="product")),
+    path("", include("healthtech.main.urls", namespace="main")),
+    path("products/", include("healthtech.product.urls", namespace="product")),
+    path("blogs/", include("healthtech.blog.urls", namespace="blog")),
 
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

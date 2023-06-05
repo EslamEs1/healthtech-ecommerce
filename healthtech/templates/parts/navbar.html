@@ -7,8 +7,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7">
                         <ul class="top-header-contact-info">
-                            <li><i class='bx bx-phone-call'></i> <a href="tel:+1234567898">(+123) 456-7898</a></li>
-                            <li><i class='bx bx-map'></i> <a href="#" target="_blank">6890 Blvd, The Bronx, NY 1058, USA</a></li>
+                            <li><i class='bx bx-phone-call'></i> <a href="tel:+{{ settings.phone }}">(+20){{ settings.phone }}</a></li>
+                            <li><i class='bx bx-map'></i> <a href="#" target="_blank">{{ settings.address }}</a></li>
                         </ul>
                     </div>
 
@@ -17,11 +17,10 @@
                             <li>
                                 <div class="dropdown language-switcher d-inline-block">
                                     <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="assets/img/flag/us-flag.jpg" class="shadow-sm" alt="image">
+                                        <img src="{% static 'img/flag/us-flag.jpg' %}" class="shadow-sm" alt="image">
                                         <span>Eng <i class="bx bx-chevron-down"></i></span>
                                     </button>
-
-                                    <div class="dropdown-menu">
+                                    <!-- <div class="dropdown-menu">
                                         <a href="#" class="dropdown-item d-flex align-items-center">
                                             <img src="assets/img/flag/germany-flag.jpg" class="shadow-sm" alt="flag">
                                             <span>Ger</span>
@@ -42,7 +41,7 @@
                                             <img src="assets/img/flag/italy-flag.jpg" class="shadow-sm" alt="flag">
                                             <span>Ita</span>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
 
@@ -54,8 +53,7 @@
 
                                     <div class="dropdown-menu">
                                         <a href="#" class="dropdown-item">USD</a>
-                                        <a href="#" class="dropdown-item">INR</a>
-                                        <a href="#" class="dropdown-item">GBP</a>
+
                                     </div>
                                 </div>
                             </li>
@@ -74,8 +72,8 @@
                 <div class="container">
                     <div class="drodo-responsive-menu">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" alt="logo">
+                            <a href="/">
+                                <img src="{{ settings.logo.url }}" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -85,23 +83,13 @@
             <div class="drodo-nav">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="assets/img/logo.png" alt="logo">
+                        <a class="navbar-brand" href="/">
+                            <img src="{{ settings.logo.url }}" alt="logo">
                         </a>
 
                         <div class="collapse navbar-collapse mean-menu">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="#" class="nav-link active">Home <i class='bx bx-chevron-down'></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a href="index.html" class="nav-link active">Home Demo - 1</a></li>
-
-                                        <li class="nav-item"><a href="index-2.html" class="nav-link">Home Demo - 2</a></li>
-
-                                        <li class="nav-item"><a href="index-3.html" class="nav-link">Home Demo - 3</a></li>
-
-                                        <li class="nav-item"><a href="index-4.html" class="nav-link">Home Demo - 4</a></li>
-                                    </ul>
-                                </li>
+                                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
 
                                 <li class="nav-item megamenu"><a href="#" class="nav-link">Shop <i class='bx bx-chevron-down'></i></a>
                                     <ul class="dropdown-menu">
@@ -109,82 +97,18 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <h6 class="submenu-title">Shop Styles</h6>
+                                                        <h6 class="submenu-title">Categories</h6>
 
                                                         <ul class="megamenu-submenu">
                                                             <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-with-categories.html">Left Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-right-sidebar.html">Right Sidebar</a></li>
-
-                                                            <li><a href="products-right-sidebar-with-categories.html">Right Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-without-sidebar.html">Without Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-fullwidth.html">With Left Sidebar Fullwidth</a></li>
-
-                                                            <li><a href="products-right-sidebar-fullwidth.html">With Right Sidebar Fullwidth</a></li>
                                                         </ul>
                                                     </div>
 
                                                     <div class="col">
-                                                        <h6 class="submenu-title">Shop Styles 2</h6>
+                                                        <h6 class="submenu-title">Brands</h6>
 
                                                         <ul class="megamenu-submenu">
                                                             <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-with-categories.html">Left Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-right-sidebar.html">Right Sidebar</a></li>
-
-                                                            <li><a href="products-right-sidebar-with-categories.html">Right Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-without-sidebar.html">Without Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-fullwidth.html">With Left Sidebar Fullwidth</a></li>
-
-                                                            <li><a href="products-right-sidebar-fullwidth.html">With Right Sidebar Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Shop Styles 3</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-with-categories.html">Left Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-right-sidebar.html">Right Sidebar</a></li>
-
-                                                            <li><a href="products-right-sidebar-with-categories.html">Right Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-without-sidebar.html">Without Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-fullwidth.html">With Left Sidebar Fullwidth</a></li>
-
-                                                            <li><a href="products-right-sidebar-fullwidth.html">With Right Sidebar Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Product Pages</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="single-products-1.html">Default Style</a></li>
-
-                                                            <li><a href="single-products-2.html">Thumbs List</a></li>
-
-                                                            <li><a href="single-products-3.html">Grid Style</a></li>
-
-                                                            <li><a href="single-products-4.html">Sticky Details</a></li>
-
-                                                            <li><a href="single-products-5.html">Slider Image</a></li>
-
-                                                            <li><a href="cart.html">Cart</a></li>
-
-                                                            <li><a href="checkout.html">Checkout</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -192,216 +116,21 @@
                                         </li>
                                     </ul>
                                 </li>
-
-                                <li class="nav-item megamenu"><a href="#" class="nav-link">Pages <i class='bx bx-chevron-down'></i></a>
-                                    <ul class="dropdown-menu" >
-                                        <li class="nav-item">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Pages I</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="about.html">About Us</a></li>
-
-                                                            <li><a href="history.html">History</a></li>
-
-                                                            <li><a href="profile-authentication.html">Login</a></li>
-
-                                                            <li><a href="faq.html">FAQ's</a></li>
-
-                                                            <li><a href="error-404.html">404 Error</a></li>
-
-                                                            <li><a href="coming-soon.html">Coming Soon</a></li>
-
-                                                            <li><a href="track-order.html">Tracking Order</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Pages II</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="categories.html">Categories</a></li>
-
-                                                            <li><a href="gallery.html">Gallery</a></li>
-
-                                                            <li><a href="customer-service.html">Customer Service</a></li>
-
-                                                            <li><a href="purchase-guide.html">Purchase Guide</a></li>
-
-                                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-
-                                                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-
-                                                            <li><a href="profile-authentication.html">Signup</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Shop Styles</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-with-categories.html">Left Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-right-sidebar.html">Right Sidebar</a></li>
-
-                                                            <li><a href="products-right-sidebar-with-categories.html">Right Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-without-sidebar.html">Without Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-fullwidth.html">With Left Sidebar Fullwidth</a></li>
-
-                                                            <li><a href="products-right-sidebar-fullwidth.html">With Right Sidebar Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Product Pages</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="single-products-1.html">Default Style</a></li>
-
-                                                            <li><a href="single-products-2.html">Thumbs List</a></li>
-
-                                                            <li><a href="single-products-3.html">Grid Style</a></li>
-
-                                                            <li><a href="single-products-4.html">Sticky Details</a></li>
-
-                                                            <li><a href="single-products-5.html">Slider Image</a></li>
-
-                                                            <li><a href="cart.html">Cart</a></li>
-
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="nav-item megamenu"><a href="#" class="nav-link">Collection <i class='bx bx-chevron-down'></i></a>
+                                <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">Blog</a></li>
+                                <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">Gellery</a></li>
+                                <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">About Us</a></li>
+                                <li class="nav-item"><a href="{% url 'main:contact' %}" class="nav-link">Contact</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Customer Care <i class='bx bx-chevron-down'></i></a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Shop Styles</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-with-categories.html">Left Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-right-sidebar.html">Right Sidebar</a></li>
-
-                                                            <li><a href="products-right-sidebar-with-categories.html">Right Sidebar With Categories</a></li>
-
-                                                            <li><a href="products-without-sidebar.html">Without Sidebar</a></li>
-
-                                                            <li><a href="products-left-sidebar-fullwidth.html">With Left Sidebar Fullwidth</a></li>
-
-                                                            <li><a href="products-right-sidebar-fullwidth.html">With Right Sidebar Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Product Pages</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="single-products-1.html">Default Style</a></li>
-
-                                                            <li><a href="single-products-2.html">Thumbs List</a></li>
-
-                                                            <li><a href="single-products-3.html">Grid Style</a></li>
-
-                                                            <li><a href="single-products-4.html">Sticky Details</a></li>
-
-                                                            <li><a href="single-products-5.html">Slider Image</a></li>
-
-                                                            <li><a href="cart.html">Cart</a></li>
-
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Pages I</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="about.html">About Us</a></li>
-
-                                                            <li><a href="history.html">History</a></li>
-
-                                                            <li><a href="profile-authentication.html">Login</a></li>
-
-                                                            <li><a href="faq.html">FAQ's</a></li>
-
-                                                            <li><a href="error-404.html">404 Error</a></li>
-
-                                                            <li><a href="coming-soon.html">Coming Soon</a></li>
-
-                                                            <li><a href="track-order.html">Tracking Order</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <ul class="megamenu-submenu">
-                                                            <li>
-                                                                <div class="aside-trending-products">
-                                                                    <img src="assets/img/navbar/navbar-img1.jpg" alt="image">
-
-                                                                    <div class="category">
-                                                                        <h4>Top Trending</h4>
-                                                                    </div>
-
-                                                                    <a href="#" class="link-btn"></a>
-                                                                </div>
-
-                                                                <div class="aside-trending-products">
-                                                                    <img src="assets/img/navbar/navbar-img2.jpg" alt="image">
-
-                                                                    <div class="category">
-                                                                        <h4>Popular Products</h4>
-                                                                    </div>
-
-                                                                    <a href="#" class="link-btn"></a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        <li class="nav-item"><a href="{% url 'main:faq' %}" class="nav-link">FAQ</a></li>
+                                        <li class="nav-item"><a href="blog-2.html" class="nav-link">Privacy Policy</a></li>
+                                        <li class="nav-item"><a href="blog-3.html" class="nav-link">History</a></li>
+                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">purchase guide</a></li>
+                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">terms of service</a></li>
+                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">customer service</a></li>
+                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">track order</a></li>
                                     </ul>
                                 </li>
-
-                                <li class="nav-item"><a href="#" class="nav-link">Blog <i class='bx bx-chevron-down'></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a href="blog-1.html" class="nav-link">Grid (2 in Row)</a></li>
-
-                                        <li class="nav-item"><a href="blog-2.html" class="nav-link">Grid (3 in Row)</a></li>
-
-                                        <li class="nav-item"><a href="blog-3.html" class="nav-link">Right Sidebar</a></li>
-
-                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">Left Sidebar</a></li>
-
-                                        <li class="nav-item"><a href="#" class="nav-link">Single Post <i class='bx bx-chevron-right'></i></a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item"><a href="single-blog-1.html" class="nav-link">Default</a></li>
-
-                                                <li class="nav-item"><a href="single-blog-2.html" class="nav-link">With Video</a></li>
-
-                                                <li class="nav-item"><a href="single-blog-3.html" class="nav-link">With Image Slider</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                             </ul>
 
                             <div class="others-option">

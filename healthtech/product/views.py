@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F, Prefetch
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
-from .models import Brand, Category, Product, Color, ProductReview, Wishlist,Inventory
+from .models import Brand, Category, Product, Color, ProductReview, Wishlist, Inventory
 
 
 class ProductListView(ListView):
@@ -38,15 +38,17 @@ class ProductListView(ListView):
                 pass
 
         return queryset.select_related("brand").prefetch_related(
-            Prefetch("inventory", queryset=Inventory.objects.select_related("product").prefetch_related("color", "image_set"))
+            Prefetch(
+                "inventory",
+                queryset=Inventory.objects.select_related("product").prefetch_related("color", "image_set"),
+            )
         )
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         queryset = self.get_queryset()
-        context["category"] = Category.objects.all()
-        context["brands"] = Brand.objects.all()
+        context["category"] = Category.objects.only("name")
+        context["brands"] = Brand.objects.only("name")
         context["colors"] = Color.objects.values("color").distinct()
         context["count"] = queryset.count()
         context["featured"] = queryset.filter(is_featured=True).first()
@@ -60,6 +62,10 @@ class ProductDetailView(DetailView):
         rating = request.POST.get("rating")
         comment = request.POST.get("comment")
 
+        if not request.user.is_authenticated:
+            messages.error(request, "You Have Login To Post Comment")
+            return HttpResponseRedirect(request.headers.get("referer"))
+
         if request.method == "POST":
             if comment:
                 if not rating:
@@ -68,7 +74,9 @@ class ProductDetailView(DetailView):
                     messages.error(request, "You have already reviewed this product.")
                 else:
                     messages.success(request, "Your review has been added successfully!")
-                    ProductReview.objects.create(product=self.get_object(), user=request.user, rating=rating, review=comment)
+                    ProductReview.objects.create(
+                        product=self.get_object(), user=request.user, rating=rating, review=comment
+                    )
             else:
                 messages.error(request, "Invalid review.")
 
@@ -79,15 +87,12 @@ class ProductDetailView(DetailView):
         self.get_object().save()
         return super().get(request, *args, **kwargs)
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.get_object()
-        category_ids = product.category.all().values_list('id', flat=True)
+        category_ids = product.category.all().values_list("id", flat=True)
         context["products"] = Product.objects.filter(category__in=category_ids).exclude(id=product.id)[:12]
         return context
-
-
 
 
 @login_required

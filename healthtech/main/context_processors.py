@@ -1,10 +1,7 @@
 from django.db.models import Sum
+from healthtech.product.models import Brand, Product, Wishlist, Inventory
 
-# from beitak.blog.models import Blog
-# from beitak.blog.models import Category as Category_Blog
-from healthtech.product.models import Brand, Category, Product, Wishlist, Inventory
-
-# from .models import Settings
+from .models import Settings
 
 
 def context_processors(request):
@@ -21,15 +18,14 @@ def context_processors(request):
         except Wishlist.DoesNotExist:
             pass
 
-    # settings = Settings.objects.first()
+    settings = Settings.objects.first()
     featured = Product.objects.filter(is_featured=True)
     home_brand = Brand.objects.all()
-
 
     return {
         "wishlist": product,
         "total": total_price,
-        # "settings": settings,
+        "settings": settings,
         "home_featured": featured,
         "home_brand": home_brand,
     }
