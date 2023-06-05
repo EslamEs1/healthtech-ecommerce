@@ -34,7 +34,6 @@ class Category(models.Model):
     #     return reverse("product:product_list", args=[self.slug])
 
 
-
 class Brand(models.Model):
     name = models.CharField(max_length=50, unique=True)
     img = models.ImageField(upload_to="img/store/brand")
@@ -57,7 +56,6 @@ class Brand(models.Model):
 class IsActiveManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True)
-
 
 
 class Product(models.Model):
@@ -93,8 +91,6 @@ class Product(models.Model):
         return self.reviews.all().count()
 
 
-
-
 @receiver(pre_save, sender=Product)
 def check_slug(sender, instance, *args, **kwargs):
     if instance.slug is None:
@@ -113,6 +109,7 @@ class Attribute(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Inventory(models.Model):
     is_active = models.BooleanField(default=True)
@@ -151,11 +148,10 @@ class StockControl(models.Model):
         verbose_name_plural = "Stock Control"
 
 
-
 class Image(models.Model):
     url = models.ImageField(upload_to=None)
     alternative_text = models.CharField(max_length=50)
-    is_feature = models.BooleanField()
+    is_feature = models.BooleanField(default=False)
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
 
 
@@ -166,8 +162,6 @@ class Additional_Information(models.Model):
 
     def __str__(self):
         return self.title
-
-
 
 
 class Wishlist(models.Model):

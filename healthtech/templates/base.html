@@ -70,7 +70,8 @@
 
     {% if messages %}
     {% for message in messages %}
-    <div style="color:{{ message.tags }};" class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+    <div style="color:{{ message.tags }};"
+      class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
       {{ message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -121,13 +122,14 @@
   {% endblock javascript %}
 
   {% block inline_javascript %}
-<script>
-  function toggleCheckbox(brand, event) {
-    event.preventDefault();
-    var checkbox = document.getElementById(brand + "-checkbox");
-    checkbox.checked = !checkbox.checked;
-  }
-</script>
+  <script>
+    function toggleCheckbox(brand, event) {
+      event.preventDefault();
+      var checkbox = document.getElementById(brand + "-checkbox");
+      checkbox.checked = !checkbox.checked;
+    }
+
+  </script>
   {% endblock inline_javascript %}
 </body>
 

@@ -60,6 +60,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    'jazzmin',
     "django.contrib.admin",
     "django.forms",
 ]
@@ -70,6 +71,8 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_celery_beat",
+    "django_cleanup",
+    "taggit",
 ]
 
 LOCAL_APPS = [
