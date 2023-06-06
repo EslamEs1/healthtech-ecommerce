@@ -25,25 +25,22 @@
       <div class="col-lg-6 col-md-12">
         <div class="about-content">
           <span class="sub-title">We believe in less but better</span>
-          <h2>Welcome to Drodo! The purpose of your service is to create our Drodo. So we always want to be by your
-            side....</h2>
-          <p>Our company has been working honestly for 25 years. To make a positive impact in the markets where we
-            operate, to empower partners and the community. we focusing on growth and adding value to customers.</p>
+          <h2>{{about.title}}</h2>
+          <p>{{about.text}}</p>
           <div class="quotes-box">
             <span>A message from our founders</span>
-            <p>We’ve been able to create a platform that customers can get their hands on whenever they want. It is
-              always our intention to serve you. </p>
+            <p>{{about.message}}</p>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 col-md-12">
         <div class="about-image">
-          <img src="assets/img/about/about-img1.jpg" alt="image">
+          <img src="{{about.img.url}}" alt="image">
 
           <div class="shape">
-            <img src="assets/img/about/about-shape1.png" alt="image">
-            <img src="assets/img/about/about-shape2.png" alt="image">
+            <img src="{% static 'img/about/about-shape1.png' %}" alt="image">
+            <img src="{% static 'img/about/about-shape2.png' %}" alt="image">
           </div>
         </div>
       </div>
@@ -56,30 +53,24 @@
 <section class="funfacts-area pb-40">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+      <div class="col-lg-4 col-md-4 col-sm-3 col-6">
         <div class="single-funfacts-box">
-          <h3>36+</h3>
+          <h3>{{users_count}}+</h3>
           <span>Clients</span>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+
+      <div class="col-lg-4 col-md-4 col-sm-3 col-6">
         <div class="single-funfacts-box">
-          <h3>+20</h3>
+          <h3>{{blog_count}}+</h3>
           <span>Blogs</span>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+      <div class="col-lg-4 col-md-4 col-sm-3 col-6">
         <div class="single-funfacts-box">
-          <h3>99+</h3>
-          <span>Blogs</span>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-        <div class="single-funfacts-box">
-          <h3>50+</h3>
+          <h3>{{pro_count}}+</h3>
           <span>Products</span>
         </div>
       </div>
@@ -96,38 +87,17 @@
     </div>
 
     <div class="row">
-      <div class="col-lg-4 col-sm-6 col-md-6">
-        <div class="single-why-choose-box">
-          <div class="icon">
-            <i class="flaticon-factory"></i>
+      {% for why in why %}
+        <div class="col-lg-4 col-sm-6 col-md-6 {% if forloop.last %} offset-lg-0 offset-sm-3 offset-md-3 {% endif %}">
+          <div class="single-why-choose-box">
+            <div class="icon">
+              <i class="flaticon-fast-delivery"></i>
+            </div>
+            <h3>{{why.title}}</h3>
+            <p>{{why.text}}</p>
           </div>
-          <h3>High Production</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur ipiscing elit, sed do eiusmod tempor inc ididunt ut labore et
-            dolore magna aliqua.</p>
         </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-6 col-md-6">
-        <div class="single-why-choose-box">
-          <div class="icon">
-            <i class="flaticon-supply-chain-management"></i>
-          </div>
-          <h3>Reliable Supplying</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur ipiscing elit, sed do eiusmod tempor inc ididunt ut labore et
-            dolore magna aliqua.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-6 col-md-6 offset-lg-0 offset-sm-3 offset-md-3">
-        <div class="single-why-choose-box">
-          <div class="icon">
-            <i class="flaticon-fast-delivery"></i>
-          </div>
-          <h3>Quick Delivery</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur ipiscing elit, sed do eiusmod tempor inc ididunt ut labore et
-            dolore magna aliqua.</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -195,89 +165,27 @@
     </div>
 
     <div class="row">
+      {% for meet in meet %}
       <div class="col-lg-3 col-sm-6 col-md-6">
         <div class="single-doctors-box">
           <div class="image">
-            <img src="assets/img/doctors/doctors-img1.jpg" alt="image">
+            <img src="{{ meet.img.url }}" alt="image">
 
             <ul class="social">
-              <li><a href="#" target="_blank"><i class='bx bxl-facebook-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class="bx bxl-twitter"></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-instagram-alt'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-linkedin-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-pinterest'></i></a></li>
+              <li><a href="{{ meet.facebook }}" target="_blank"><i class='bx bxl-facebook-square'></i></a></li>
+              <li><a href="{{ meet.twitter }}" target="_blank"><i class="bx bxl-twitter"></i></a></li>
+              <li><a href="{{ meet.instagram }}" target="_blank"><i class='bx bxl-instagram-alt'></i></a></li>
+              <li><a href="{{ meet.linkedin }}" target="_blank"><i class='bx bxl-linkedin-square'></i></a></li>
             </ul>
           </div>
 
           <div class="content">
-            <h3>Lauren Wells</h3>
-            <span>Director</span>
+            <h3>{{ meet.name }}</h3>
+            <span>>{{ meet.about }}</span>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6">
-        <div class="single-doctors-box">
-          <div class="image">
-            <img src="assets/img/doctors/doctors-img2.jpg" alt="image">
-
-            <ul class="social">
-              <li><a href="#" target="_blank"><i class='bx bxl-facebook-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class="bx bxl-twitter"></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-instagram-alt'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-linkedin-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-pinterest'></i></a></li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <h3>Francis Milligan</h3>
-            <span>CEO & Founder</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6">
-        <div class="single-doctors-box">
-          <div class="image">
-            <img src="assets/img/doctors/doctors-img3.jpg" alt="image">
-
-            <ul class="social">
-              <li><a href="#" target="_blank"><i class='bx bxl-facebook-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class="bx bxl-twitter"></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-instagram-alt'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-linkedin-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-pinterest'></i></a></li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <h3>Kristin Taylor</h3>
-            <span>Administrator</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6">
-        <div class="single-doctors-box">
-          <div class="image">
-            <img src="assets/img/doctors/doctors-img4.jpg" alt="image">
-
-            <ul class="social">
-              <li><a href="#" target="_blank"><i class='bx bxl-facebook-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class="bx bxl-twitter"></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-instagram-alt'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-linkedin-square'></i></a></li>
-              <li><a href="#" target="_blank"><i class='bx bxl-pinterest'></i></a></li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <h3>Henry Woods</h3>
-            <span>Chief Officer</span>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 from django.db.models import Sum
 
-from healthtech.product.models import Brand, Product, Wishlist, Inventory
+from healthtech.product.models import Wishlist, Inventory
 
 from .models import Settings
 
@@ -20,13 +20,9 @@ def context_processors(request):
             pass
 
     settings = Settings.objects.first()
-    featured = Product.objects.filter(is_featured=True)
-    home_brand = Brand.objects.all()
 
     return {
         "wishlist": product,
         "total": total_price,
         "settings": settings,
-        "home_featured": featured,
-        "home_brand": home_brand,
     }

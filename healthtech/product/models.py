@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from django.urls import reverse
 from django.utils.text import slugify
 
 from .fields import HexColorField

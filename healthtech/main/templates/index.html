@@ -1,28 +1,7 @@
-
-
-        <!-- Start Search Overlay -->
-        <div class="search-overlay">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="search-overlay-layer"></div>
-                    <div class="search-overlay-layer"></div>
-                    <div class="search-overlay-layer"></div>
-
-                    <div class="search-overlay-close">
-                        <span class="search-overlay-close-line"></span>
-                        <span class="search-overlay-close-line"></span>
-                    </div>
-
-                    <div class="search-overlay-form">
-                        <form>
-                            <input type="text" class="input-search" placeholder="Search here...">
-                            <button type="submit"><i class='bx bx-search-alt'></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Search Overlay -->
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %} HealthTech | Home {% endblock title %}</title>
+{% block content %}
 
         <!-- Start Home Slides Area -->
         <section class="home-slides owl-carousel owl-theme">
@@ -47,7 +26,7 @@
 
                                 <div class="col-lg-7 col-md-12">
                                     <div class="banner-image text-center">
-                                        <img src="assets/img/banner/banner-img1.png" class="main-image" alt="image">
+                                        <img src="{% static 'img/banner/banner-img1.png' %}" class="main-image" alt="image">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +56,7 @@
 
                                 <div class="col-lg-7 col-md-12">
                                     <div class="banner-image text-center">
-                                        <img src="assets/img/banner/banner-img2.png" class="main-image" alt="image">
+                                        <img src="{% static 'img/banner/banner-img2.png' %}" class="main-image" alt="image">
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +86,7 @@
 
                                 <div class="col-lg-7 col-md-12">
                                     <div class="banner-image text-center">
-                                        <img src="assets/img/banner/banner-img3.png" class="main-image" alt="image">
+                                        <img src="{% static 'img/banner/banner-img3.png' %}" class="main-image" alt="image">
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +103,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="single-banner-categories-box">
-                            <img src="assets/img/banner-categories/banner-categories-img1.jpg" alt="image">
+                            <img src="{% static 'img/banner-categories/banner-categories-img1.jpg' %}" alt="image">
 
                             <div class="content">
                                 <span class="sub-title">Temperature</span>
@@ -141,7 +120,7 @@
 
                     <div class="col-lg-6 col-md-6">
                         <div class="single-banner-categories-box">
-                            <img src="assets/img/banner-categories/banner-categories-img2.jpg" alt="image">
+                            <img src="{% static 'img/banner-categories/banner-categories-img2.jpg' %}" alt="image">
 
                             <div class="content">
                                 <span class="sub-title">Personal</span>
@@ -170,7 +149,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img1.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img1.png' %}" alt="image">
                             <h3>Diagnostic Sets</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -178,7 +157,7 @@
 
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img2.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img2.png' %}" alt="image">
                             <h3>Antiseptic</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -186,7 +165,7 @@
 
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img3.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img3.png' %}" alt="image">
                             <h3>Microscope</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -194,7 +173,7 @@
 
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img4.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img4.png' %}" alt="image">
                             <h3>Pharmacy</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -202,7 +181,7 @@
 
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img5.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img5.png' %}" alt="image">
                             <h3>Accessories</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -210,7 +189,7 @@
 
                     <div class="col-lg-2 col-sm-4 col-md-4">
                         <div class="single-categories-box">
-                            <img src="assets/img/categories/categories-img6.png" alt="image">
+                            <img src="{% static 'img/categories/categories-img6.png' %}" alt="image">
                             <h3>Equipment</h3>
                             <a href="products-left-sidebar.html" class="link-btn"></a>
                         </div>
@@ -230,7 +209,7 @@
                 <div class="products-slides owl-carousel owl-theme">
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img1.jpg" alt="image"></a>
+                            <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img1.jpg' %}" alt="image"></a>
 
                             <div class="new">New</div>
 
@@ -274,7 +253,7 @@
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img2.jpg" alt="image"></a>
+                            <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img2.jpg' %}" alt="image"></a>
 
                             <div class="sale">Sale</div>
 
@@ -318,7 +297,7 @@
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img3.jpg" alt="image"></a>
+                            <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img3.jpg' %}" alt="image"></a>
 
                             <div class="new">New</div>
 
@@ -363,7 +342,7 @@
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img4.jpg" alt="image"></a>
+                            <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img4.jpg' %}" alt="image"></a>
 
                             <div class="new">New</div>
 
@@ -407,7 +386,7 @@
 
                     <div class="single-products-box">
                         <div class="image">
-                            <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img5.jpg" alt="image"></a>
+                            <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img5.jpg' %}" alt="image"></a>
 
                             <div class="new">New</div>
 
@@ -459,7 +438,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="single-products-promotions-box">
-                            <img src="assets/img/promotions/promotions-img1.jpg" alt="image">
+                            <img src="{% static 'img/promotions/promotions-img1.jpg' %}" alt="image">
 
                             <div class="content">
                                 <span class="sub-title">Special Deal</span>
@@ -472,7 +451,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="single-products-promotions-box">
-                            <img src="assets/img/promotions/promotions-img2.jpg" alt="image">
+                            <img src="{% static 'img/promotions/promotions-img2.jpg' %}" alt="image">
 
                             <div class="content">
                                 <span class="sub-title">New Arrivals</span>
@@ -485,7 +464,7 @@
 
                     <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
                         <div class="single-products-promotions-box">
-                            <img src="assets/img/promotions/promotions-img3.jpg" alt="image">
+                            <img src="{% static 'img/promotions/promotions-img3.jpg' %}" alt="image">
 
                             <div class="content">
                                 <span class="sub-title">Hot Collection</span>
@@ -511,7 +490,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img5.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img5.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -555,7 +534,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img6.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img6.jpg' %}" alt="image"></a>
 
                                 <div class="sale">Sale</div>
 
@@ -601,7 +580,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img7.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img7.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -645,7 +624,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img8.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img8.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -689,7 +668,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img9.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img9.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -733,7 +712,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img10.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img10.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -778,7 +757,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img11.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img11.jpg' %}" alt="image"></a>
 
                                 <div class="buttons-list">
                                     <ul>
@@ -822,7 +801,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-products-box">
                             <div class="image">
-                                <a href="single-products-1.html" class="d-block"><img src="assets/img/products/products-img12.jpg" alt="image"></a>
+                                <a href="single-products-1.html" class="d-block"><img src="{% static 'img/products/products-img12.jpg' %}" alt="image"></a>
 
                                 <div class="sale">Sale</div>
 
@@ -902,37 +881,37 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img1.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img1.png' %}" alt="image"></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img2.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img2.png' %}" alt="image"></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img3.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img3.png' %}" alt="image"></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img4.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img4.png' %}" alt="image"></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img5.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img5.png' %}" alt="image"></a>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-sm-4 col-md-2 col-6">
                         <div class="single-brands-item">
-                            <a href="#" class="d-block"><img src="assets/img/brands/brands-img6.png" alt="image"></a>
+                            <a href="#" class="d-block"><img src="{% static 'img/brands/brands-img6.png' %}" alt="image"></a>
                         </div>
                     </div>
                 </div>
@@ -951,7 +930,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-post">
                             <div class="post-image">
-                                <a href="single-blog-1.html" class="d-block"><img src="assets/img/blog/blog-img1.jpg" alt="image"></a>
+                                <a href="single-blog-1.html" class="d-block"><img src="{% static 'img/blog/blog-img1.jpg' %}" alt="image"></a>
                             </div>
 
                             <div class="post-content">
@@ -959,7 +938,7 @@
                                 <ul class="post-meta align-items-center d-flex">
                                     <li>
                                         <div class="flex align-items-center">
-                                            <img src="assets/img/user1.jpg" alt="image">
+                                            <img src="{% static 'img/user1.jpg' %}" alt="image">
                                             <a href="#">Nathan Oritz</a>
                                         </div>
                                     </li>
@@ -972,7 +951,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-blog-post">
                             <div class="post-image">
-                                <a href="single-blog-1.html" class="d-block"><img src="assets/img/blog/blog-img2.jpg" alt="image"></a>
+                                <a href="single-blog-1.html" class="d-block"><img src="{% static 'img/blog/blog-img2.jpg' %}" alt="image"></a>
                             </div>
 
                             <div class="post-content">
@@ -980,7 +959,7 @@
                                 <ul class="post-meta align-items-center d-flex">
                                     <li>
                                         <div class="flex align-items-center">
-                                            <img src="assets/img/user2.jpg" alt="image">
+                                            <img src="{% static 'img/user2.jpg' %}" alt="image">
                                             <a href="#">Randy Osborne</a>
                                         </div>
                                     </li>
@@ -993,7 +972,7 @@
                     <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
                         <div class="single-blog-post">
                             <div class="post-image">
-                                <a href="single-blog-1.html" class="d-block"><img src="assets/img/blog/blog-img3.jpg" alt="image"></a>
+                                <a href="single-blog-1.html" class="d-block"><img src="{% static 'img/blog/blog-img3.jpg' %}" alt="image"></a>
                             </div>
 
                             <div class="post-content">
@@ -1001,7 +980,7 @@
                                 <ul class="post-meta align-items-center d-flex">
                                     <li>
                                         <div class="flex align-items-center">
-                                            <img src="assets/img/user3.jpg" alt="image">
+                                            <img src="{% static 'img/user3.jpg' %}" alt="image">
                                             <a href="#">Patricia Marcus</a>
                                         </div>
                                     </li>
@@ -1016,3 +995,4 @@
         <!-- End Blog Area -->
 
 
+{% endblock content %}

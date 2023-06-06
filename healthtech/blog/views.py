@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.db.models import Count, Q
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import DetailView, ListView
 from taggit.models import Tag
 
@@ -78,3 +78,9 @@ class BlogDetailView(DetailView):
 
     def get_popular_blogs(self):
         return self.get_queryset().filter(category=self.object.category).order_by("-views_count")
+
+
+def inst_img(request):
+    context = {}
+    context["images"] = InstagramImage.objects.all
+    return render(request, "gallery.html", context)

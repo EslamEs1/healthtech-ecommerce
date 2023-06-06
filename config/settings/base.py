@@ -81,9 +81,11 @@ LOCAL_APPS = [
     "healthtech.main",
     "healthtech.blog",
     "healthtech.order",
+    "healthtech.coupons",
+    "healthtech.cart",
     "healthtech.payment",
-    # Your stuff: custom apps go here
 ]
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -311,3 +313,11 @@ SOCIALACCOUNT_FORMS = {"signup": "healthtech.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+CART_SESSION_ID = 'cart'
+
+
+STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')

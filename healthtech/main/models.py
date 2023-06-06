@@ -51,6 +51,7 @@ class About_US(models.Model):
     img = models.ImageField(upload_to="img/about/")
     title = models.CharField(max_length=150)
     text = models.TextField()
+    message = models.CharField(max_length=300)
 
 
 class Why_Choose_Us(models.Model):
@@ -68,3 +69,32 @@ class Meet_Our_Doctors(models.Model):
     instagram = models.URLField()
     linkedin = models.URLField()
 
+
+class Customer_Service(models.Model):
+    icon = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class History(models.Model):
+    img = models.ImageField(upload_to="img/history/")
+    title = models.CharField(max_length=150)
+    text = models.TextField()
+    date = models.DateField()
+
+    def __str__(self):
+        return self.title
+
+
+class Information(models.Model):
+    title = models.CharField(max_length=150, unique=True)
+    img = models.ImageField(upload_to="img/Information/")
+    text = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
