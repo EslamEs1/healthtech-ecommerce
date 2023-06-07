@@ -8,6 +8,10 @@ urlpatterns = [
     path("", include("healthtech.main.urls", namespace="main")),
     path("products/", include("healthtech.product.urls", namespace="product")),
     path("blogs/", include("healthtech.blog.urls", namespace="blog")),
+    path("payment/", include("healthtech.payment.urls", namespace="payment")),
+    path("orders/", include("healthtech.order.urls", namespace="orders")),
+    path("cart/", include("healthtech.cart.urls", namespace="cart")),
+    path("coupon/", include("healthtech.coupons.urls", namespace="coupons")),
 
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

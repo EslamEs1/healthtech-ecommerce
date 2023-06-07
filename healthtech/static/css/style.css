@@ -164,7 +164,7 @@ p:last-child {
 }
 
 /*default-btn*/
-.default-btn {
+.default-btn  , .default-btn-sub{
   display: inline-block;
   position: relative;
   z-index: 1;
@@ -185,7 +185,9 @@ p:last-child {
   font-weight: 600;
 }
 
-.default-btn i {
+
+
+.default-btn i ,.default-btn-sub i {
   position: absolute;
   left: 25px;
   top: 13px;
@@ -196,7 +198,7 @@ p:last-child {
   transition: var(--transition);
 }
 
-.default-btn:hover {
+.default-btn:hover ,.default-btn-sub:hover  {
   background-color: var(--whiteColor);
   color: var(--blackColor);
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;

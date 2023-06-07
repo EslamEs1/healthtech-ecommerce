@@ -4,6 +4,8 @@ from django.db.models import Q, F, Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
+from django.views.generic.edit import FormMixin
+from healthtech.cart.forms import CartAddProductForm
 
 from .models import Brand, Category, Product, Color, ProductReview, Wishlist, Inventory
 
@@ -55,8 +57,9 @@ class ProductListView(ListView):
         return context
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(FormMixin, DetailView):
     model = Product
+    form_class = CartAddProductForm
 
     def post(self, request, *args, **kwargs):
         rating = request.POST.get("rating")

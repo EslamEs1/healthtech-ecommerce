@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %} Cart {% endblock title %}</title>
+
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<section class="page-title-area">
+  <div class="container">
+    <div class="page-title-content">
+      <h1>shopping cart</h1>
+      <ul>
+        <li>Cart</li>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- End Page Title Area -->
+
+<!-- Start Cart Area -->
+<section class="cart-area ptb-70">
+  <div class="container">
+    <div class="cart-table table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Name</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in cart %}
+          {% with product=item.product %}
+          {% for inventory in product.inventory.all %}
+          <tr>
+            <td class="product-thumbnail">
+              <a href="{{ product.get_absolute_url }}">
+                {% for image in inventory.image_set.all %}
+                <li><img src="{{ image.url.url }}" alt="image"></li>
+                {% endfor %}
+              </a>
+            </td>
+
+            <td class="product-name">
+              <a href="{{ product.get_absolute_url }}">{{product}}</a>
+            </td>
+
+            <td class="product-price">
+              <span class="unit-amount">$ {{inventory.price}}</span>
+            </td>
+            <form id="update" action="{% url 'cart:cart_add' product.id %}" method="POST">
+              <td class="product-quantity">
+                <div class="input-counter">
+                  {{ item.update_quantity_form.quantity }}
+                </div>
+                {{ item.update_quantity_form.override }}
+              </td>
+              {% csrf_token %}
+
+            </form>
+
+            <td class="product-subtotal">
+              <span class="subtotal-amount">$ {{ item.total_price }}</span>
+              <form style="display:inline;" action='{% url "cart:cart_remove" product.id %}' method="post">
+                <button style="border:none; background:transparent;" type="submit" class="remove"><i
+                    class='bx bx-trash'></i></button>
+                {% csrf_token %}
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+          {% endwith %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cart-buttons">
+      <div class="row align-items-center">
+        <div class="col-lg-7 col-sm-7 col-md-7">
+          <div class="shopping-coupon-code">
+            <form action="{% url 'coupons:apply' %}" method="post">
+              {{ coupon_apply_form }}
+              <button type="submit">Apply Coupon</button>
+              {% csrf_token %}
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-sm-5 col-md-5 text-end">
+          <button type="submit" form="update" class="default-btn-sub"><i class="flaticon-view"></i> Update Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-totals">
+      <h3>Cart Totals</h3>
+
+      <ul>
+        <li>Total <span>$ {{ cart.get_total_price_after_discount }}</span></li>
+        {% if cart.coupon %}
+        <li>Subtotal <span>$ {{ cart.get_total_price|floatformat:2 }}</span></li>
+        {%with code=cart.coupon.code discount=cart.coupon.discount %}
+        <li>"{{ code }}" coupon <span>$ ({{ discount }}% off)</span></li>
+        {% endwith %}
+        <li>discount <span>- ${{ cart.get_discount|floatformat:2 }}</span></li>
+        {% endif %}
+
+      </ul>
+
+      <a href="{% url 'orders:order_create' %}" class="default-btn"><i class="flaticon-trolley"></i> Proceed to Checkout</a>
+    </div>
+  </div>
+</section>
+<!-- End Cart Area -->
+
+{% endblock content %}

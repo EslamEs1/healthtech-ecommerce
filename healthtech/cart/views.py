@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from product.models import Product
-from coupons.forms import CouponApplyForm
-from product.recommender import Recommender
-from .cart import Cart
+from healthtech.product.models import Product
+from healthtech.coupons.forms import CouponApplyForm
+from healthtech.cart.cart import Cart
 from .forms import CartAddProductForm
 
 
@@ -29,6 +28,7 @@ def cart_remove(request, product_id):
 
 
 def cart_detail(request):
+    context = {}
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={
@@ -36,16 +36,6 @@ def cart_detail(request):
             'override': True})
     coupon_apply_form = CouponApplyForm()
 
-    r = Recommender()
-    cart_products = [item['product'] for item in cart]
-    if (cart_products):
-        recommended_products = r.suggest_products_for(cart_products,
-                                                      max_results=4)
-    else:
-        recommended_products = []
-
-    return render(request,
-                  'cart/detail.html',
-                  {'cart': cart,
-                   'coupon_apply_form': coupon_apply_form,
-                   'recommended_products': recommended_products})
+    context["cart"] = cart
+    context["coupon_apply_form"] = coupon_apply_form
+    return render(request, 'cart/detail.html', context)

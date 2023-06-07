@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import OrderItem
 from .forms import OrderCreateForm
-from cart.cart import Cart
+from healthtech.cart.cart import Cart
 from django.urls import reverse
 from .tasks import order_created
+from django.contrib import messages
 
 
 def order_create(request):
@@ -17,10 +18,8 @@ def order_create(request):
                 order.discount = cart.coupon.discount
             order.save()
             for item in cart:
-                OrderItem.objects.create(order=order,
-                                         product=item['product'],
-                                         price=item['price'],
-                                         quantity=item['quantity'])
+                OrderItem.objects.create(
+                    order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             # clear the cart
             cart.clear()
             # launch asynchronous task
@@ -29,8 +28,8 @@ def order_create(request):
             request.session['order_id'] = order.id
             # redirect for payment
             return redirect(reverse('payment:process'))
+        else:
+            messages.error(request, "Please correct the errors in the form.")
     else:
         form = OrderCreateForm()
-    return render(request,
-                  'orders/order/create.html',
-                  {'cart': cart, 'form': form})
+    return render(request, 'orders/checkout.html', {'cart': cart, 'form': form})

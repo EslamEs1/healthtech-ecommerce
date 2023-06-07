@@ -1,6 +1,6 @@
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
-from . import views
+from healthtech.payment import views
 
 app_name = 'payment'
 
