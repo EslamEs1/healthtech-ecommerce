@@ -52,7 +52,7 @@
             </td>
 
             <td class="product-price">
-              <span class="unit-amount">$ {{inventory.price}}</span>
+              <span class="unit-amount">$ {{item.price}}</span>
             </td>
             <form id="update" action="{% url 'cart:cart_add' product.id %}" method="POST">
               <td class="product-quantity">
@@ -104,7 +104,6 @@
       <h3>Cart Totals</h3>
 
       <ul>
-        <li>Total <span>$ {{ cart.get_total_price_after_discount }}</span></li>
         {% if cart.coupon %}
         <li>Subtotal <span>$ {{ cart.get_total_price|floatformat:2 }}</span></li>
         {%with code=cart.coupon.code discount=cart.coupon.discount %}
@@ -112,6 +111,7 @@
         {% endwith %}
         <li>discount <span>- ${{ cart.get_discount|floatformat:2 }}</span></li>
         {% endif %}
+        <li>Total <span>$ {{ cart.get_total_price_after_discount|floatformat:2 }}</span></li>
 
       </ul>
 

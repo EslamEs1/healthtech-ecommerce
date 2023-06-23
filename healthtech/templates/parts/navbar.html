@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 
         <!-- Start Top Header Area -->
@@ -57,8 +57,13 @@
                                     </div>
                                 </div>
                             </li>
-
-                            <li><a href="profile-authentication.html">My Account</a></li>
+                            {% if request.user.is_authenticated %}
+                              <li><a href="{% url 'users:detail' request.user.pk %}">{% translate "My Account" %}</a></li>
+                            {% else %}
+                              <li>
+                                <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+                              </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -73,7 +78,7 @@
                     <div class="drodo-responsive-menu">
                         <div class="logo">
                             <a href="/">
-                                <img src="{{ settings.logo.url }}" alt="logo">
+                                <img src="{{ settings.main_logo.url }}" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -84,51 +89,27 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand" href="/">
-                            <img src="{{ settings.logo.url }}" alt="logo">
+                            <img src="{{ settings.main_logo.url }}" alt="logo">
                         </a>
 
                         <div class="collapse navbar-collapse mean-menu">
                             <ul class="navbar-nav">
                                 <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
 
-                                <li class="nav-item megamenu"><a href="#" class="nav-link">Shop <i class='bx bx-chevron-down'></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Categories</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <h6 class="submenu-title">Brands</h6>
-
-                                                        <ul class="megamenu-submenu">
-                                                            <li><a href="products-left-sidebar.html">Left Sidebar</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li class="nav-item megamenu"><a href="{% url 'product:list' %}" class="nav-link">Shop</a> </li>
                                 <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">Blog</a></li>
-                                <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">Gellery</a></li>
-                                <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">About Us</a></li>
+                                <li class="nav-item"><a href="{% url 'blog:gallery' %}" class="nav-link">Gallery</a></li>
+                                <li class="nav-item"><a href="{% url 'main:about' %}" class="nav-link">About Us</a></li>
                                 <li class="nav-item"><a href="{% url 'main:contact' %}" class="nav-link">Contact</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Customer Care <i class='bx bx-chevron-down'></i></a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a href="{% url 'main:faq' %}" class="nav-link">FAQ</a></li>
-                                        <li class="nav-item"><a href="blog-2.html" class="nav-link">Privacy Policy</a></li>
-                                        <li class="nav-item"><a href="blog-3.html" class="nav-link">History</a></li>
-                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">purchase guide</a></li>
-                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">terms of service</a></li>
-                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">customer service</a></li>
-                                        <li class="nav-item"><a href="blog-4.html" class="nav-link">track order</a></li>
+                                        <li class="nav-item"><a href="{% url 'main:information' 'privacy-policy' %}" class="nav-link">Privacy Policy</a></li>
+                                        <li class="nav-item"><a href="{% url 'main:history' %}" class="nav-link">History</a></li>
+                                        <li class="nav-item"><a href="{% url 'main:information' 'purchase-guide' %}" class="nav-link">purchase guide</a></li>
+                                        <li class="nav-item"><a href="{% url 'main:information' 'terms-of-service' %}" class="nav-link">terms of service</a></li>
+                                        <li class="nav-item"><a href="{% url 'main:customer' %}" class="nav-link">customer service</a></li>
+                                        <!-- <li class="nav-item"><a href="{% url 'main:faq' %}" class="nav-link">track order</a></li> -->
                                     </ul>
                                 </li>
                             </ul>
@@ -142,7 +123,7 @@
 
                                 <div class="option-item">
                                     <div class="cart-btn">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>3</span></a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shoppingCartModal"><i class='bx bx-shopping-bag'></i><span>{{ item_cart|length }}</span></a>
                                     </div>
                                 </div>
 

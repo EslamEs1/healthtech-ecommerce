@@ -14,7 +14,7 @@ User = settings.AUTH_USER_MODEL
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    img = models.ImageField(upload_to="img/store/category")
+    url = models.ImageField(upload_to="img/store/category")
     slug = models.SlugField(max_length=50, blank=True, editable=False)
     is_active = models.BooleanField()
 
@@ -148,7 +148,7 @@ class StockControl(models.Model):
 
 
 class Image(models.Model):
-    url = models.ImageField(upload_to=None)
+    url = models.ImageField(upload_to="img/products")
     alternative_text = models.CharField(max_length=50)
     is_feature = models.BooleanField(default=False)
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)

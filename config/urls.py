@@ -3,6 +3,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
+from healthtech.payment.webhooks import stripe_webhook
+
 
 urlpatterns = [
     path("", include("healthtech.main.urls", namespace="main")),
@@ -12,6 +14,9 @@ urlpatterns = [
     path("orders/", include("healthtech.order.urls", namespace="orders")),
     path("cart/", include("healthtech.cart.urls", namespace="cart")),
     path("coupon/", include("healthtech.coupons.urls", namespace="coupons")),
+
+    path('payment/webhook/', stripe_webhook, name='stripe-webhook'),
+
 
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

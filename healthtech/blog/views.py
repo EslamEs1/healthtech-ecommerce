@@ -70,7 +70,7 @@ class BlogDetailView(DetailView):
         blog = self.get_object()
         context["popular"] = self.get_popular_blogs().exclude(id=blog.id)[:3]
         context["category"] = Category.objects.only("name").annotate(count=Count("blog"))
-        context["tags"] = Tag.objects.annotate(num_products=Count("name"), count=Count("blog")).filter(num_products=1)
+        context["tags"] = Tag.objects.annotate(num_blogs=Count("name"), count=Count("blog")).filter(num_blogs=1)
         context["prev"] = self.get_queryset().filter(created_at__lt=blog.created_at)
         context["next"] = self.get_queryset().filter(created_at__gt=blog.created_at)
         context["comments"] = Comment.objects.filter(blog_id=blog.id)
@@ -83,4 +83,4 @@ class BlogDetailView(DetailView):
 def inst_img(request):
     context = {}
     context["images"] = InstagramImage.objects.all
-    return render(request, "gallery.html", context)
+    return render(request, "blog/gallery.html", context)

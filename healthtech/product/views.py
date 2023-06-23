@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, F, Prefetch
+from django.db.models import Q, F, Prefetch, Sum, Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
@@ -8,6 +8,7 @@ from django.views.generic.edit import FormMixin
 from healthtech.cart.forms import CartAddProductForm
 
 from .models import Brand, Category, Product, Color, ProductReview, Wishlist, Inventory
+from healthtech.order.models import OrderItem
 
 
 class ProductListView(ListView):
@@ -54,6 +55,7 @@ class ProductListView(ListView):
         context["colors"] = Color.objects.values("color").distinct()
         context["count"] = queryset.count()
         context["featured"] = queryset.filter(is_featured=True).first()
+        context["bestseller"] = OrderItem.objects.only('product').distinct("product__name")[:3]
         return context
 
 
@@ -111,3 +113,7 @@ def toggle_wishlist(request, slug):
         messages.success(request, "Product added to wishlist.")
 
     return HttpResponseRedirect(request.headers.get("referer"))
+
+
+# class CategoryListView(ListView):
+#     model = Category

@@ -95,7 +95,7 @@ class Comment(models.Model):
         verbose_name_plural = "Comments"
 
     def __str__(self):
-        return self.author + self.blog
+        return str(self.author) + str(self.blog)
 
 
 class InstagramImage(models.Model):

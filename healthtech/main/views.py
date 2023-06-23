@@ -10,14 +10,24 @@ from .models import (
     Customer_Service,
     Information,
     History,
-                    )
-from healthtech.product.models import Product
+)
+from healthtech.product.models import Product, Category, Brand
+from healthtech.order.models import OrderItem
 from healthtech.blog.models import Blog
 from healthtech.users.models import User
 
 
 def home(request):
-    return render(request, "index.html", {})
+    context = {}
+
+    products = Product.objects.all()
+    context["products"] = products
+    context["featured"] = products.filter(is_featured=True)
+    context["blogs"] = Blog.objects.all()[:3]
+    context["categories"] = Category.objects.all()[:12]
+    context["brands"] = Brand.objects.all()
+    context["bestseller"] = OrderItem.objects.only('product').distinct("product__name")[:12]
+    return render(request, "index.html", context)
 
 
 def contact(request):

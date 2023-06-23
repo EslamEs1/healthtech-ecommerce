@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import BlogDetailView, BlogListView
+from .views import BlogDetailView, BlogListView, inst_img
 
 app_name = "blog"
 
@@ -9,4 +9,6 @@ urlpatterns = [
     path("list/filter/<slug:slug>/", BlogListView.as_view(), name="filter"),
     path("list/tag/<int:id>/", BlogListView.as_view(), name="tag_filter"),
     path("detail/<slug:slug>/", BlogDetailView.as_view(), name="blog_detail"),
+
+    path("gallery/", inst_img, name="gallery"),
 ]

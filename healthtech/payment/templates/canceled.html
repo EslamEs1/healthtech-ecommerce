@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment canceled" %}{% endblock %}
+
+{% block content %}
+  <div class="payment-cancel">
+    <h1>{% trans "Your payment has not been processed" %}</h1>
+    <p>{% trans "There was a problem processing your payment." %}</p>
+  </div>
+
+  <style>
+    .payment-cancel {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+{% endblock %}

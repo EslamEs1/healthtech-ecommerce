@@ -14,11 +14,11 @@
       <div class="row align-items-center">
         <div class="col-lg-6 col-md-6">
           <div class="products-image">
-              {% for img in inventory.image_set.all %}
-              {% if img.is_feature %}
-              <a href="{{product.get_absolute_url}}" class="d-block"><img src="{{img.url.url}}" alt="image"></a>
-              {% endif %}
-              {% endfor %}
+            {% for img in inventory.image_set.all %}
+            {% if img.is_feature %}
+            <a href="{{product.get_absolute_url}}" class="d-block"><img src="{{img.url.url}}" alt="image"></a>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
 
@@ -43,22 +43,23 @@
             </div>
 
             <ul class="products-info">
-            <li><span>Vendor:</span> <a href="#">{{ inventory.product.brand.name }}</a></li>
-            {% if inventory.stock %}
+              <li><span>Vendor:</span> <a href="#">{{ inventory.product.brand.name }}</a></li>
+              {% if inventory.stock %}
               <li><span>Availability:</span> <a href="#">In stock ({{ inventory.stock.units }} items)</a></li>
-            {% else %}
+              {% else %}
               <li><span>Availability:</span> <a href="#">Out of stock</a></li>
-            {% endif %}
-            {% if inventory.attribute_values.exists %}
+              {% endif %}
+              {% if inventory.attribute_values.exists %}
               <li><span>Product Type:</span> <a href="#">{{ inventory.attribute_values.first.name }}</a></li>
-            {% endif %}
-          </ul>
+              {% endif %}
+            </ul>
 
             <div class="products-color-switch">
               <h4>Color:</h4>
               <ul>
                 {% for color in inventory.color.all %}
-                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="{{color.color}}"> <span style="background-color: #{{color.color}};"></span></a>
+                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="{{color.color}}"> <span
+                      style="background-color: #{{color.color}};"></span></a>
                 </li>
                 {% endfor %}
               </ul>
@@ -107,66 +108,48 @@
       </button>
 
       <div class="modal-body">
-        <h3>My Cart (3)</h3>
+        <h3>My Cart ({{ item_cart|length }})</h3>
 
         <div class="products-cart-content">
-          <div class="products-cart d-flex align-items-center">
-            <div class="products-image">
-              <a href="#"><img src="assets/img/products/products-img1.jpg" alt="image"></a>
-            </div>
-
-            <div class="products-content">
-              <h3><a href="#">Coronavirus Face Mask</a></h3>
-              <div class="products-price">
-                <span>1</span>
-                <span>x</span>
-                <span class="price">$39.00</span>
-              </div>
-            </div>
-            <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
-          </div>
+          {% for cart in item_cart %}
+          {% with product=cart.product %}
+          {% for inventory in product.inventory.all %}
 
           <div class="products-cart d-flex align-items-center">
             <div class="products-image">
-              <a href="#"><img src="assets/img/products/products-img2.jpg" alt="image"></a>
+              <a href="{{ product.get_absolute_url }}">
+                {% for image in inventory.image_set.all %}
+                <li><img src="{{ image.url.url }}" alt="image"></li>
+                {% endfor %}
+              </a>
             </div>
 
             <div class="products-content">
-              <h3><a href="#">Protective Gloves</a></h3>
+              <h3><a href="{{ product.get_absolute_url }}">{{ cart.product }}</a></h3>
               <div class="products-price">
-                <span>1</span>
+                <span>{{ cart.quantity }}</span>
                 <span>x</span>
-                <span class="price">$99.00</span>
+                <span class="price">${{ cart.price }}</span>
               </div>
             </div>
-            <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
+            <form style="display:inline;" action='{% url "cart:cart_remove" product.id %}' method="post">
+              <button style="border:none; background:transparent;" type="submit" class="remove"><i
+                  class='bx bx-trash'></i></button>
+              {% csrf_token %}
+            </form>
           </div>
-
-          <div class="products-cart d-flex align-items-center">
-            <div class="products-image">
-              <a href="#"><img src="assets/img/products/products-img3.jpg" alt="image"></a>
-            </div>
-
-            <div class="products-content">
-              <h3><a href="#">Infrared Thermometer Gun</a></h3>
-              <div class="products-price">
-                <span>1</span>
-                <span>x</span>
-                <span class="price">$90.00</span>
-              </div>
-            </div>
-            <a href="#" class="remove-btn"><i class='bx bx-trash'></i></a>
-          </div>
+          {% endfor %}
+          {% endwith %}
+          {% endfor %}
         </div>
 
         <div class="products-cart-subtotal">
           <span>Subtotal</span>
-
-          <span class="subtotal">$228.00</span>
+          <span class="subtotal">${{ item_cart.get_total_price|floatformat:2 }}</span>
         </div>
 
         <div class="products-cart-btn">
-          <a href="#" class="default-btn">Proceed to Checkout</a>
+          <a href="{% url 'orders:order_create' %}" class="default-btn">Proceed to Checkout</a>
         </div>
       </div>
     </div>
@@ -183,7 +166,7 @@
       </button>
 
       <div class="modal-body">
-        <h3>My Wishlist</h3>
+        <h3>My Wishlist ({{ wishlist|length }})</h3>
 
         <div class="products-cart-content">
           {% for wishlist in wishlist %}
@@ -215,9 +198,9 @@
         <div class="products-cart-subtotal">
           <span>Subtotal</span>
           {% if total %}
-            <span class="subtotal">${{total}}</span>
+          <span class="subtotal">${{total}}</span>
           {% else %}
-            <span class="subtotal">$0</span>
+          <span class="subtotal">$0</span>
           {% endif %}
         </div>
 

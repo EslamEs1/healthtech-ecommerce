@@ -4,6 +4,7 @@ from healthtech.product.models import Product
 from healthtech.coupons.forms import CouponApplyForm
 from healthtech.cart.cart import Cart
 from .forms import CartAddProductForm
+from django.http import HttpResponseRedirect
 
 
 @require_POST
@@ -24,7 +25,7 @@ def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return redirect('cart:cart_detail')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def cart_detail(request):

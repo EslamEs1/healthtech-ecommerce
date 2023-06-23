@@ -1,6 +1,6 @@
 from django.db.models import Sum
-
-from healthtech.product.models import Wishlist, Inventory
+from healthtech.cart.cart import Cart
+from healthtech.product.models import Wishlist, Inventory, Category
 
 from .models import Settings
 
@@ -20,9 +20,12 @@ def context_processors(request):
             pass
 
     settings = Settings.objects.first()
-
+    category = Category.objects.all()
+    cart = Cart(request)
     return {
         "wishlist": product,
         "total": total_price,
         "settings": settings,
+        "category": category,
+        "item_cart": cart,
     }

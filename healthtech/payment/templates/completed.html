@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment successful" %}{% endblock %}
+
+{% block content %}
+  <div class="payment-success">
+    <h1>{% trans "Your payment was successful" %}</h1>
+    <p>{% trans "Your payment has been processed successfully." %}</p>
+  </div>
+
+  <style>
+    .payment-success {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+{% endblock %}

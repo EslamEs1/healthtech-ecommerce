@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Pay your order" %}{% endblock %}
+
+{% block content %}
+
+<div class="container summary">
+  <h1>{% trans "Order summary" %}</h1>
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>{% trans "Product" %}</th>
+        <th>{% trans "Price" %}</th>
+        <th>{% trans "Quantity" %}</th>
+        <th>{% trans "Total" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+        <td>{{ item.product.name }}</td>
+        <td class="num">${{ item.price }}</td>
+        <td class="num">{{ item.quantity }}</td>
+        <td class="num">${{ item.get_cost }}</td>
+      {% endfor %}
+      {% if order.coupon %}
+      <tr class="subtotal">
+        <td>{% trans "Subtotal" %}</td>
+        <td colspan="3"></td>
+        <td class="num">
+          ${{ order.get_total_cost_before_discount|floatformat:2 }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {% blocktrans with code=order.coupon.code discount=order.discount %}
+          "{{ code }}" ({{ discount }}% off)
+          {% endblocktrans %}
+        </td>
+        <td colspan="3"></td>
+        <td class="num neg">
+          - ${{ order.get_discount|floatformat:2 }}
+        </td>
+      </tr>
+      {% endif %}
+      <tr class="total">
+        <td>{% trans "Total" %}</td>
+        <td colspan="3"></td>
+        <td class="num">
+          ${{ order.get_total_cost|floatformat:2 }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <form action="{% url "payment:process" %}" method="post">
+    <input type="submit" value="{% trans "Pay now" %}">
+    {% csrf_token %}
+  </form>
+</div>
+<style>
+  /* Example CSS styles for the template */
+  .summary{
+    padding:50px 0;
+  }
+  .cart {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .cart th,
+  .cart td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  .cart th {
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+
+  .cart tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .cart tr.total {
+    font-weight: bold;
+  }
+
+  .num {
+    text-align: right;
+  }
+
+  .neg {
+    color: red;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+</style>
+{% endblock %}

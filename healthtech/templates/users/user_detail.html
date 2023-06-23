@@ -4,31 +4,80 @@
 {% block title %}User: {{ object.name }}{% endblock %}
 
 {% block content %}
-<div class="container">
+<style>
+  .user_detail .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
 
+  .user_detail .title {
+    color: grey;
+    font-size: 18px;
+  }
+
+  .user_detail .btn {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .user_detail a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+
+  .user_detail .btn:hover,
+  .user_detail a:hover {
+    opacity: 0.7;
+  }
+
+</style>
+
+<div class="container user_detail">
   <div class="row">
     <div class="col-sm-12">
+      <div class="card">
+        <!-- <img class="card-img-top" src="{{ object.profile_image.url }}" alt="Profile Image"> -->
+        <img class="card-img-top profile-image" src="{% static 'img/user.webp' %}" alt="Profile Image">
 
-      <h2>{{ object.name }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+        <div class="card-body">
+          <h1 class="card-title">{{ object.name }}</h1>
+          <h6 class="card-title">{{ object.email }}</h6>
+          {% if object.position %}
+          <p class="title">{{ object.position }}</p>
+          {% endif %}
+          {% if object.education %}
+          <p>{{ object.education }}</p>
+          {% endif %}
+          {% if object.social_links %}
+          <div style="margin: 24px 0;">
+            {% for link in object.social_links %}
+            <a href="{{ link.url }}"><i class="fa fa-{{ link.icon }}"></i></a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <!-- Add more user information as needed -->
+          {% if object == request.user %}
+          <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">Edit Profile</a>
+          <br>
+          <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">Change Email</a>
+          {% endif %}
+
+        </div>
+      </div>
     </div>
   </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
 
 </div>
 {% endblock content %}
