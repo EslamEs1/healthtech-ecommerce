@@ -24,7 +24,7 @@ def home(request):
     context["products"] = products
     context["featured"] = products.filter(is_featured=True)
     context["blogs"] = Blog.objects.all()[:3]
-    context["categories"] = Category.objects.all()[:12]
+    context["categories"] = Category.objects.all()[:6]
     context["brands"] = Brand.objects.all()
     context["bestseller"] = OrderItem.objects.only('product').distinct("product__name")[:12]
     return render(request, "index.html", context)

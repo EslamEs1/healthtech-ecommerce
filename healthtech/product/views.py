@@ -115,5 +115,5 @@ def toggle_wishlist(request, slug):
     return HttpResponseRedirect(request.headers.get("referer"))
 
 
-# class CategoryListView(ListView):
-#     model = Category
+class CategoryListView(ListView):
+    model = Category

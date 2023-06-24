@@ -32,13 +32,6 @@ class Contact(models.Model):
         return f"{self.name} | {self.email}"
 
 
-class Subscribe:
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.email
-
-
 class Faq(models.Model):
     question = models.CharField(max_length=200)
     answer = models.TextField()
@@ -98,3 +91,16 @@ class Information(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Newsletter(models.Model):
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.email
+
+

@@ -19,16 +19,11 @@
                 <p>{{ product.description|safe|truncatewords:15 }}</p>
                 <div class="btn-box">
                   <div class="d-flex align-items-center">
-                    <form action="{% url 'cart:cart_add' product.id %}" method="POST">
-                      {% csrf_token %}
-                      <div class="products-add-to-cart">
-                        <div class="input-counter">
-                          {{ form.quantity }}
-                        </div>
-
-                        <button type="submit" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
-                      </div>
-                    </form>
+                    <div class="cart-btn">
+                      <a href="{% url 'cart:cart_add_links' product.id %}">
+                        <button type="button" class="default-btn"><i class="flaticon-trolley"></i> Add to Cart</button>
+                      </a>
+                    </div>
                     <span class="price">${{ inventory.price }}</span>
                   </div>
                 </div>
@@ -105,7 +100,7 @@
           <img src="{{ category.url.url }}" alt="image">
           {% endif %}
           <h3>{{ category.name }}</h3>
-          <a href="#" class="link-btn"></a>
+          <a href="{% url 'product:categories' %}" class="link-btn"></a>
         </div>
       </div>
       {% endfor %}
@@ -138,7 +133,7 @@
             <ul>
               <li>
                 <div class="cart-btn">
-                  <a href="#">
+                  <a href="{% url 'cart:cart_add_links' best.id %}">
                     <i class='bx bxs-cart-add'></i>
                     <span class="tooltip-label">Add to Cart</span>
                   </a>
@@ -250,7 +245,7 @@
               <ul>
                 <li>
                   <div class="cart-btn">
-                    <a href="#">
+                    <a href="{% url 'cart:cart_add_links' product.id %}">
                       <i class='bx bxs-cart-add'></i>
                       <span class="tooltip-label">Add to Cart</span>
                     </a>

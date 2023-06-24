@@ -154,17 +154,10 @@
                   <ul>
                     <li>
                       <div class="cart-btn">
-                        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
-                          {% csrf_token %}
-                          <div class="products-add-to-cart">
-                            <div class="input-counter">
-                              {{ form.quantity }}
-                            </div>
-
-                            <button type="submit" class="default-btn"><i class="flaticon-trolley"></i> Add to
-                              Cart</button>
-                          </div>
-                        </form>
+                        <a href="{% url 'cart:cart_add_links' product.id %}">
+                          <i class='bx bxs-cart-add'></i>
+                          <span class="tooltip-label">Add to Cart</span>
+                        </a>
                       </div>
                     </li>
                     <li>
